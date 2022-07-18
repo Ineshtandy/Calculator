@@ -1,5 +1,4 @@
 
-
 function add(n1 ,n2){
     console.log(n1+n2);
 }
@@ -27,3 +26,9 @@ function operate(op , num1, num2){
         divide(num1, num2);
     }
 }
+
+function display(ans){
+    let dispEl = document.getElementById("display");
+    dispEl.textContent = ans;
+}
+
