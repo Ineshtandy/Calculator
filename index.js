@@ -22,8 +22,16 @@ let arr = [];
 function store(val){
     //console.log(val);
     arr.push(val);
-    console.log(arr);
+    //console.log(arr);
 
+    if(val === '='){
+        let n1 = parseInt(arr.shift());
+        let operator = arr.shift();
+        let n2 = parseInt(arr.shift());
+        
+        let ans = operate(n1,operator,n2);
+        console.log(ans);
+    }
     //let counter = 0;
     // let arr[3];
     // if(counter < 3){
@@ -34,30 +42,30 @@ function store(val){
 }
 
 function add(n1 ,n2){
-    console.log(n1+n2);
+    return n1+n2;
 }
 
 function subtract(n1 ,n2){
-    console.log(n1-n2);
+    return n1-n2;
 }
 
 function multiply(n1 ,n2){
-    console.log(n1*n2);
+    return n1*n2;
 }
 
 function divide(n1 ,n2){
-    console.log(n1/n2);
+    return n1/n2;
 }
 
-function operate(op , num1, num2){
+function operate(num1 ,op, num2){
     if(op === '+'){
-        add(num1, num2);
+        return add(num1, num2);
     }else if(op === '-'){
-        subtract(num1, num2);
+        return subtract(num1, num2);
     }else if(op === '*'){
-        multiply(num1, num2);
+        return multiply(num1, num2);
     }else if(op === '/'){
-        divide(num1, num2);
+        return divide(num1, num2);
     }
 }
 
