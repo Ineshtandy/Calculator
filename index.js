@@ -23,9 +23,45 @@ let dispEl = document.getElementById("display");
 clearDisplay();
 
 let arr = [];
+let multidig = true;
 function store(val){
     //val here is the value sent by the onclick on in the button, integer type
-    arr.push(val);
+    
+    // if(arr[arr.length-1]==undefined){
+    //     arr[0]=val;
+    // }
+    // else if (val==='+' || val==='-' || val==='*' || val==='/'){
+    //     arr.push(val);
+    // }
+    // else if((typeof parseInt(arr[arr.length-1]) == typeof 1) && !(val==='+' || val==='-' || val==='*' || val==='/')){
+    //     arr[arr.length-1] += val;
+    // }else{
+    //     arr.push(val);
+    // }
+    // console.log(arr);
+
+    //new code multiplication
+    
+    if(arr[arr.length-1]==undefined){
+        arr.push(val);
+    }
+    else if(parseInt(val) in [1,2,3,4,5,6,7,8,9]){
+        if(multidig == true){
+            let helper = parseInt(arr[arr.length-1])*10 + parseInt(val);
+            arr[arr.length-1] = helper;
+    //        console.log(multidig);
+        }else{
+            arr.push(val);
+            multidig = true;
+    //        console.log(multidig);
+        } 
+    }else{
+        arr.push(val);
+        multidig = false;
+    //    console.log(multidig);
+    }
+    //console.log(arr);
+
 
     if(val === '='){
         arr.pop();//this is to remove the '=' sign to make sure array only contains opearands and operators
@@ -41,13 +77,15 @@ function store(val){
             n1 = ans;
             operator = arr.shift();
             n2 = parseInt(arr.shift());//this is the spot where the last element of the array is removed and array becomes empty
-            console.log(operate(n1,operator,n2));
-            ans += operate(n1,operator,n2);
+            //console.log(operate(n1,operator,n2));
+            ans = operate(n1,operator,n2);
         }
-        
+        console.log(ans);
         display(ans);
+        //arr = [];
     }
-    
+
+    displayStream(val);
 }
 
 function add(n1 ,n2){
@@ -85,5 +123,16 @@ function display(ans){
 function clearDisplay(){
     console.log("inside clear func");
     dispEl.textContent = "ready for calculations";
+}
+
+function displayStream(val){
+    if(dispEl.textContent === 'ready for calculations'){
+        dispEl.textContent = "";
+    }
+    if(val === '='){
+        dispEl.textContent += " ";
+    }else{
+        dispEl.textContent += " " + val;
+    }
 }
 
