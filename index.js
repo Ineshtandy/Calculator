@@ -19,6 +19,9 @@
 // let equalBtn = document.querySelector("#=");
 // let clearBtn = document.querySelector("#clear");
 
+let dispEl = document.getElementById("display");
+clearDisplay();
+
 let arr = [];
 function store(val){
     //val here is the value sent by the onclick on in the button, integer type
@@ -76,7 +79,11 @@ function operate(num1 ,op, num2){
 }
 
 function display(ans){
-    let dispEl = document.getElementById("display");
     dispEl.textContent = ans;
+}
+
+function clearDisplay(){
+    console.log("inside clear func");
+    dispEl.textContent = "ready for calculations";
 }
 
