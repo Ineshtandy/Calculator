@@ -30,7 +30,7 @@ function store(val){
         let n2 = parseInt(arr.shift());
         
         let ans = operate(n1,operator,n2);
-        console.log(ans);
+        display(ans);
     }
     //let counter = 0;
     // let arr[3];
