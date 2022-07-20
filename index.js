@@ -1,3 +1,4 @@
+//THIS DOM STRUCTURE IS NOT WORKING, FUNCTIONALITY ADDED VIA ONCLICK
 // let oneBtn = document.querySelector("#one");
 // oneBtn.addEventListener("click",e => {
 //     console.log(e.innerText);
@@ -20,25 +21,30 @@
 
 let arr = [];
 function store(val){
-    //console.log(val);
+    //val here is the value sent by the onclick on in the button, integer type
     arr.push(val);
-    //console.log(arr);
 
     if(val === '='){
-        let n1 = parseInt(arr.shift());
+        arr.pop();//this is to remove the '=' sign to make sure array only contains opearands and operators
+        
+        let ans = 0;
+        let n1 = parseInt(arr.shift());//parse to convert string val into int
         let operator = arr.shift();
         let n2 = parseInt(arr.shift());
+        ans = operate(n1,operator,n2);
+        console.log(ans);
+
+        while(arr.length > 0 && ans != undefined){
+            n1 = ans;
+            operator = arr.shift();
+            n2 = parseInt(arr.shift());//this is the spot where the last element of the array is removed and array becomes empty
+            console.log(operate(n1,operator,n2));
+            ans += operate(n1,operator,n2);
+        }
         
-        let ans = operate(n1,operator,n2);
         display(ans);
     }
-    //let counter = 0;
-    // let arr[3];
-    // if(counter < 3){
-    //     arr[counter] = val;
-    // }else{
-    //     //call function
-    // }
+    
 }
 
 function add(n1 ,n2){
